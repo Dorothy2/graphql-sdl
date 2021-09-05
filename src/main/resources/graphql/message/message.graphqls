@@ -1,0 +1,4 @@
+type Message {
+  firstName: String!
+  lastName: String
+}

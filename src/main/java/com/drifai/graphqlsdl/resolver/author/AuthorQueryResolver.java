@@ -1,4 +1,4 @@
-package com.drifai.graphqlsdl.resolver;
+package com.drifai.graphqlsdl.resolver.author;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.drifai.graphqlsdl.dto.AuthorDto;

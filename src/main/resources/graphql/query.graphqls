@@ -1,0 +1,7 @@
+type Query {
+  helloWorld: String!
+  greetingMessage(firstName:String!, lastName: String): String!
+  rollDice: [Int!]!
+  authors: [Author]!
+  recentPosts(count: Int!, offset: Int!): [Post]!
+}
