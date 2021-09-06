@@ -75,4 +75,9 @@ public class PostServiceImpl implements PostService {
         Post createdPost = postRepository.saveAndFlush(post);
         return createdPost.getId();
     }
+
+    @Override
+    public Integer getPostCountByAuthorId(UUID id) {
+        return postRepository.findAllByAuthor_Id(id).size();
+    }
 }

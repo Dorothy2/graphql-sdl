@@ -30,11 +30,11 @@ class AuthorQueryResolverTest {
         assertEquals(FileReaderUtil.removeWhiteSpace(FileReaderUtil.read("response/author-query.json")),FileReaderUtil.removeWhiteSpace(graphQLResponse.getRawResponse().getBody()));
     }
 
-//    @Test
-//    public void showReturnPostCountForAuthor() throws IOException {
-//        GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/post-count-query.graphqls");
-//        assertEquals(graphQLResponse.isOk(), true);
-//        assertEquals(FileReaderUtil.removeWhiteSpace(FileReaderUtil.read("response/post-count-query.json")),FileReaderUtil.removeWhiteSpace(graphQLResponse.getRawResponse().getBody()));
-//    }
+    @Test
+    public void showReturnPostCountForAuthor() throws IOException {
+        GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/post-count-query.graphqls");
+        assertEquals(graphQLResponse.isOk(), true);
+        assertEquals(FileReaderUtil.removeWhiteSpace(FileReaderUtil.read("response/post-count-query.json")),FileReaderUtil.removeWhiteSpace(graphQLResponse.getRawResponse().getBody()));
+    }
 
 }
