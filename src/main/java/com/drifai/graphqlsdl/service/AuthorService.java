@@ -1,7 +1,6 @@
 package com.drifai.graphqlsdl.service;
 
 import com.drifai.graphqlsdl.dto.AuthorDto;
-import com.drifai.graphqlsdl.model.Author;
 
 import java.util.List;
 import java.util.UUID;

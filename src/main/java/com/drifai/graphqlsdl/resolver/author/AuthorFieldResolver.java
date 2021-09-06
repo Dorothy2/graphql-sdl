@@ -1,5 +1,7 @@
 package com.drifai.graphqlsdl.resolver.author;
 
+import com.drifai.graphqlsdl.dto.CommentDto;
+import com.drifai.graphqlsdl.service.CommentService;
 import graphql.kickstart.tools.GraphQLResolver;
 import com.drifai.graphqlsdl.dto.AuthorDto;
 import com.drifai.graphqlsdl.dto.PostDto;
@@ -15,9 +17,11 @@ import java.util.UUID;
 public class AuthorFieldResolver implements GraphQLResolver<AuthorDto> {
 
     private PostService postService;
+    private CommentService commentService;
 
-    public AuthorFieldResolver(PostService postService) {
+    public AuthorFieldResolver(PostService postService, CommentService commentService) {
         this.postService = postService;
+        this.commentService = commentService;
     }
 
     public List<PostDto> posts(AuthorDto authorDto) {
@@ -26,5 +30,9 @@ public class AuthorFieldResolver implements GraphQLResolver<AuthorDto> {
 
     public Integer postCount(AuthorDto authorDto) {
         return postService.getPostCountByAuthorId(authorDto.getId());
+    }
+
+    public List<CommentDto> getComments(AuthorDto authorDto, Integer first) {
+        return commentService.getFirstNCommentByAuthorId(authorDto.getId(), first);
     }
 }
