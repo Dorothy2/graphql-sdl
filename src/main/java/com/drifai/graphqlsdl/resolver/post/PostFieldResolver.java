@@ -1,6 +1,6 @@
 package com.drifai.graphqlsdl.resolver.post;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
+import graphql.kickstart.tools.GraphQLResolver;;
 import com.drifai.graphqlsdl.dto.AuthorDto;
 import com.drifai.graphqlsdl.dto.PostDto;
 import com.drifai.graphqlsdl.service.AuthorService;

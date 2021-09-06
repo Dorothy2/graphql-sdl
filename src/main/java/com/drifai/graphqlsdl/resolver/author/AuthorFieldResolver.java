@@ -1,9 +1,10 @@
 package com.drifai.graphqlsdl.resolver.author;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
+import graphql.kickstart.tools.GraphQLResolver;
 import com.drifai.graphqlsdl.dto.AuthorDto;
 import com.drifai.graphqlsdl.dto.PostDto;
 import com.drifai.graphqlsdl.service.PostService;
+import graphql.kickstart.tools.GraphQLResolver;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;

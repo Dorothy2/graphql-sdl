@@ -1,6 +1,7 @@
 package com.drifai.graphqlsdl.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
+import graphql.kickstart.tools.GraphQLResolver;;
 import com.drifai.graphqlsdl.dto.MessageDto;
 import org.springframework.stereotype.Component;
 
