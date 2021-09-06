@@ -21,8 +21,8 @@ class PostQueryResolverTest {
 
     @Test
     public void shouldGetPostData() throws IOException, JSONException {
-        GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/post-query.graphqls");
+        GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/recent-post-query.graphqls");
         assertEquals(graphQLResponse.isOk(), true);
-        assertEquals(FileReaderUtil.removeWhiteSpace(FileReaderUtil.read("response/post-query.json")),FileReaderUtil.removeWhiteSpace(graphQLResponse.getRawResponse().getBody()));
+        assertEquals(FileReaderUtil.removeWhiteSpace(FileReaderUtil.read("response/recent-post-query.json")),FileReaderUtil.removeWhiteSpace(graphQLResponse.getRawResponse().getBody()));
     }
 }

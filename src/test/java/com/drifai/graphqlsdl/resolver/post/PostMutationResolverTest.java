@@ -2,6 +2,7 @@ package com.drifai.graphqlsdl.resolver.post;
 
 import com.drifai.graphqlsdl.TestApplication;
 import com.drifai.graphqlsdl.dto.AuthorDto;
+import com.drifai.graphqlsdl.dto.PostDto;
 import com.drifai.graphqlsdl.service.AuthorService;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
@@ -31,15 +32,10 @@ public class PostMutationResolverTest {
     static UUID uuid = UUID.randomUUID();
 
     @Test
-    public void shouldCreateAuthor() throws IOException, JSONException {
-        AuthorDto author = AuthorDto.builder()
-                .email("test@gmail.com")
-                .name("test")
-                .build();
-        doReturn(uuid).when(authorServiceMock).createAuthor(author);
-        GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/create-author-mutation.graphqls");
+    public void shouldCreatePost() throws IOException, JSONException {
+        GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/create-post-mutation.graphqls");
         assertEquals(graphQLResponse.isOk(), true);
-        String uuid = graphQLResponse.get("$.data.createAuthor");
+        String uuid = graphQLResponse.get("$.data.createPost");
         assertTrue(uuid != null);
      }
 
