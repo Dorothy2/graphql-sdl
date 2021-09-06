@@ -40,9 +40,8 @@ public class AuthorMutationResolverTest {
         doReturn(uuid).when(authorServiceMock).createAuthor(author);
         GraphQLResponse graphQLResponse = graphQLTestTemplate.postForResource("request/create-author-mutation.graphqls");
         assertEquals(graphQLResponse.isOk(), true);
-        //assertTrue(graphQLResponse.get("$.data.createAuthor") != null);
         String uuid = graphQLResponse.get("$.data.createAuthor");
-        //assertTrue(uuid != null);
+        assertTrue(uuid != null);
      }
 
 }
