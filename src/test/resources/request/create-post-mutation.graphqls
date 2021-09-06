@@ -1,0 +1,8 @@
+mutation {
+    createPost(post: {
+        title: "Java, How to Program",
+        description: "Java textbook",
+        category: "Java text book",
+        authorId: "44b0ed8f-351c-4368-a472-cadd17444947"
+    })
+}
