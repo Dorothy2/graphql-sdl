@@ -13,4 +13,6 @@ public interface PostService {
     UUID createPost(PostDto postDto);
 
     Integer getPostCountByAuthorId(UUID id);
+
+    PostDto getPostById(UUID id);
 }

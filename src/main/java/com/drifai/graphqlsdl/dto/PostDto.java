@@ -1,10 +1,12 @@
 package com.drifai.graphqlsdl.dto;
 
+import com.drifai.graphqlsdl.model.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -17,4 +19,5 @@ public class PostDto {
     private String category;
     private String description;
     private UUID authorId;
+    private Set<Comment> comments;
 }

@@ -6,5 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CommentService {
-    List<CommentDto> getFirstNCommentByAuthorId(UUID uuid, Integer count);
+    List<CommentDto> getComments(Integer count, Integer offset);
+
+    List<CommentDto> getFirstNCommentByAuthorId(UUID authorId, Integer count);
+
+    List<CommentDto> getFirstNCommentByPostId(UUID postId, Integer count);
 }

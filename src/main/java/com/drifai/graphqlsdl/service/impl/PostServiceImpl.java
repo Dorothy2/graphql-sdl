@@ -1,5 +1,6 @@
 package com.drifai.graphqlsdl.service.impl;
 
+import com.drifai.graphqlsdl.dto.CommentDto;
 import com.drifai.graphqlsdl.dto.PostDto;
 import com.drifai.graphqlsdl.model.Author;
 import com.drifai.graphqlsdl.model.Post;
@@ -80,4 +81,24 @@ public class PostServiceImpl implements PostService {
     public Integer getPostCountByAuthorId(UUID id) {
         return postRepository.findAllByAuthor_Id(id).size();
     }
+
+    @Override
+    public PostDto getPostById(UUID postId) {
+        Optional<Post> postOptional = postRepository.findById(postId);
+        if(! postOptional.isPresent()) {
+            throw new RuntimeException("Post does not exist");
+        } else {
+            Post p = postOptional.get();
+            return PostDto.builder()
+               .id(p.getId())
+               .title(p.getTitle())
+               .authorId(p.getAuthor().getId())
+               .category(p.getCategory())
+               .description(p.getDescription())
+               .comments(p.getComments())
+              .build();
+        }
+
+    }
+
 }

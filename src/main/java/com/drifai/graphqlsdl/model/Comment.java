@@ -22,7 +22,12 @@ public class Comment {
     private UUID id;
 
     private String text;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 }

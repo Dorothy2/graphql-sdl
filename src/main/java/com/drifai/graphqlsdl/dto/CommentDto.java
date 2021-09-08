@@ -15,4 +15,5 @@ public class CommentDto {
     private UUID id;
     private String text;
     private UUID authorId;
+    private UUID postId;
 }
