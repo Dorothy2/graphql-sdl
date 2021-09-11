@@ -2,4 +2,5 @@ type Comment {
     id: ID!
     text: String!
     post: Post!
+    author: Author!
 }

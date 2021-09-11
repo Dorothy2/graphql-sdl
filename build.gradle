@@ -21,12 +21,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
-	//implementation 'com.graphql-java:graphql-java-tools:5.2.4'
 	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:11.1.0'
+	implementation 'io.projectreactor:reactor-core'
 
-	//runtimeOnly 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
-	//runtimeOnly 'com.graphql-java:voyager-spring-boot-starter:5.0.2'
 	runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0'
 	runtimeOnly 'com.graphql-java-kickstart:playground-spring-boot-starter:11.1.0'
 	runtimeOnly 'com.graphql-java-kickstart:voyager-spring-boot-starter:11.1.0'

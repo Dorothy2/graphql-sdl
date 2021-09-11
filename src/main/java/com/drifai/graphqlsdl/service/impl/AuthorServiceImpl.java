@@ -36,7 +36,11 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public AuthorDto getAuthorById(UUID authorId) {
-        Author author =  authorRepository.findById(authorId).get();
+        Optional<Author> authorOptional = authorRepository.findById(authorId);
+        if(!authorOptional.isPresent()) {
+            throw new RuntimeException("Author does not exist.");
+        }
+        Author author = authorOptional.get();
         return AuthorDto.builder()
                 .id(author.getId())
                 .email(author.getEmail())
