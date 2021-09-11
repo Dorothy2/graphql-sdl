@@ -1,14 +1,19 @@
 package com.drifai.graphqlsdl.service.impl;
 
 import com.drifai.graphqlsdl.dto.CommentDto;
+import com.drifai.graphqlsdl.model.Author;
 import com.drifai.graphqlsdl.model.Comment;
+import com.drifai.graphqlsdl.model.Post;
+import com.drifai.graphqlsdl.repository.AuthorRepository;
 import com.drifai.graphqlsdl.repository.CommentRepository;
+import com.drifai.graphqlsdl.repository.PostRepository;
 import com.drifai.graphqlsdl.service.CommentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -16,9 +21,13 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
+    private final AuthorRepository authorRepository;
 
-    public CommentServiceImpl(CommentRepository commentRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository, PostRepository postRepository, AuthorRepository authorRepository) {
         this.commentRepository = commentRepository;
+        this.postRepository = postRepository;
+        this.authorRepository = authorRepository;
     }
 
     @Override
@@ -61,6 +70,27 @@ public class CommentServiceImpl implements CommentService {
                         .postId(comment.getPost().getId())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UUID createComment(CommentDto commentDto) {
+        Optional<Post> post = postRepository.findById(commentDto.getPostId());
+        if(!post.isPresent()) {
+            throw new RuntimeException("Post does not exist.");
+        }
+
+        Optional<Author> author = authorRepository.findById(commentDto.getAuthorId());
+        if(!author.isPresent()) {
+            throw new RuntimeException("Author does not exist.");
+        }
+        Comment comment = Comment.builder()
+                .text(commentDto.getText())
+                .post(post.get())
+                .author(author.get())
+                .build();
+
+        Comment createdComment = commentRepository.saveAndFlush(comment);
+        return createdComment.getId();
     }
 }
 

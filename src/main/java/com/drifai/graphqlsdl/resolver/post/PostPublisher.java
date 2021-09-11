@@ -5,6 +5,8 @@ import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Sinks;
 
+import java.util.UUID;
+
 @Component
 public class PostPublisher {
 
@@ -20,5 +22,9 @@ public class PostPublisher {
 
     public void publish(PostDto postDto) {
         processor.emitNext(postDto, Sinks.EmitFailureHandler.FAIL_FAST);
+    }
+
+    public Publisher<PostDto> getRecentPostByAuthor(UUID authorId) {
+        return processor.asFlux().filter(postDto -> authorId.equals(postDto.getAuthorId()));
     }
 }
