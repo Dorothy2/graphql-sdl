@@ -1,7 +1,9 @@
 package com.drifai.graphqlsdl.service.impl;
 
 import com.drifai.graphqlsdl.dto.AuthorDto;
+import com.drifai.graphqlsdl.exception.ResourceNotFoundException;
 import com.drifai.graphqlsdl.model.Author;
+import com.drifai.graphqlsdl.model.Post;
 import com.drifai.graphqlsdl.repository.AuthorRepository;
 import com.drifai.graphqlsdl.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +39,8 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorDto getAuthorById(UUID authorId) {
         Optional<Author> authorOptional = authorRepository.findById(authorId);
-        if(!authorOptional.isPresent()) {
-            throw new RuntimeException("Author does not exist.");
-        }
-        Author author = authorOptional.get();
+
+        Author author =authorOptional.orElseThrow(() -> new ResourceNotFoundException("Author does not exist"));
         return AuthorDto.builder()
                 .id(author.getId())
                 .email(author.getEmail())

@@ -2,6 +2,7 @@ package com.drifai.graphqlsdl.service.impl;
 
 import com.drifai.graphqlsdl.dto.CommentDto;
 import com.drifai.graphqlsdl.dto.PostDto;
+import com.drifai.graphqlsdl.exception.ResourceNotFoundException;
 import com.drifai.graphqlsdl.model.Author;
 import com.drifai.graphqlsdl.model.Post;
 import com.drifai.graphqlsdl.repository.AuthorRepository;
@@ -30,7 +31,11 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getAllPostByAuthorId(UUID authorId) {
-        List<Post> allByAuthor_id = postRepository.findAllByAuthor_Id(authorId);
+        Optional<Author> authorOptional = authorRepository.findById(authorId);
+
+        Author author =authorOptional.orElseThrow(() -> new ResourceNotFoundException("Author does not exist"));
+
+        List<Post> allByAuthor_id = postRepository.findAllByAuthor_Id(author.getId());
         return allByAuthor_id.stream()
                 .map(post -> {
                     return PostDto.builder()
@@ -85,20 +90,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto getPostById(UUID postId) {
         Optional<Post> postOptional = postRepository.findById(postId);
-        if(! postOptional.isPresent()) {
-            throw new RuntimeException("Post does not exist");
-        } else {
-            Post p = postOptional.get();
-            return PostDto.builder()
-               .id(p.getId())
-               .title(p.getTitle())
-               .authorId(p.getAuthor().getId())
-               .category(p.getCategory())
-               .description(p.getDescription())
-               .comments(p.getComments())
-              .build();
-        }
+        Post p =postOptional.orElseThrow(() -> new ResourceNotFoundException("Post does not exist"));
 
+        return PostDto.builder()
+           .id(p.getId())
+           .title(p.getTitle())
+           .authorId(p.getAuthor().getId())
+           .category(p.getCategory())
+           .description(p.getDescription())
+           .comments(p.getComments())
+          .build();
     }
 
 }
