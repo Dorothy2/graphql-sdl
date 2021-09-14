@@ -1,0 +1,5 @@
+type Customer {
+  birthDate: Date!
+  workStartTime: Time!
+  bornAt: DateTime!
+}
