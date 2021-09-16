@@ -15,4 +15,6 @@ public class CustomerDto {
     private LocalDate birthDate;
     private OffsetTime workStartTime;
     private OffsetDateTime bornAt;
+    // not SocialMediaLink
+    private String profileLink;
 }

@@ -17,11 +17,12 @@ import java.util.UUID;
 @Component
 public class CustomerQueryResolver implements GraphQLQueryResolver {
 
-    public CustomerDto getCustomer() {
+    public CustomerDto getCustomer(String phoneNumber) {
        return CustomerDto.builder()
               .birthDate(LocalDate.now())
               .workStartTime(OffsetTime.now())
               .bornAt(OffsetDateTime.now())
+              .profileLink("some link")
               .build();
     }
 }
