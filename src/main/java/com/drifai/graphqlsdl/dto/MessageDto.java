@@ -14,4 +14,5 @@ import java.util.UUID;
 public class MessageDto {
     private UUID id;
     private String text;
+    private Integer luckyNumbers;
 }
