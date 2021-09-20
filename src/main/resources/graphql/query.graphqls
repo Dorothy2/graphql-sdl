@@ -6,4 +6,5 @@ type Query {
   recentPosts(count: Int!, offset: Int!): [Post]!
   comments(count: Int!, offset: Int!): [Comment]!
   customer(phoneNumber: PhoneNumber!, email: Email!): Customer!
+  message: Message!
 }
