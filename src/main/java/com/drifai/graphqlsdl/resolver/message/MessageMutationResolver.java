@@ -12,9 +12,5 @@ public class MessageMutationResolver implements GraphQLMutationResolver {
 
     public UUID createMessage(UUID id, String title) {
         return UUID.randomUUID();
-        //return MessageDto.builder()
-        //        .id(id)
-        //        .text("This is a text message")
-        //        .build();
     }
 }
