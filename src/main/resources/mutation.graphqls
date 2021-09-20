@@ -2,4 +2,6 @@ type Mutation {
   createAuthor(author: AuthorInput): ID!
   createPost(post: PostInput!): ID!
   createComment(comment: CommentInput!): ID!
+  createMessage(id: ID!@NotBlank(message: "createMessage.NotBlank.message"),
+    title: String! @NotBlank(message: "createMessage.NotBlank.message")): ID!
 }

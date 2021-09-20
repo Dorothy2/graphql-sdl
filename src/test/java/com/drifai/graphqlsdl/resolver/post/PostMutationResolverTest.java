@@ -37,6 +37,6 @@ public class PostMutationResolverTest {
         assertEquals(graphQLResponse.isOk(), true);
         String uuid = graphQLResponse.get("$.data.createPost");
         assertTrue(uuid != null);
-     }
+    }
 
 }
