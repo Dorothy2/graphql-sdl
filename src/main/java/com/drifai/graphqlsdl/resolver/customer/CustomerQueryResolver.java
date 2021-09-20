@@ -17,7 +17,7 @@ import java.util.UUID;
 @Component
 public class CustomerQueryResolver implements GraphQLQueryResolver {
 
-    public CustomerDto getCustomer(String phoneNumber) {
+    public CustomerDto getCustomer(String phoneNumber, String email) {
        return CustomerDto.builder()
               .birthDate(LocalDate.now())
               .workStartTime(OffsetTime.now())

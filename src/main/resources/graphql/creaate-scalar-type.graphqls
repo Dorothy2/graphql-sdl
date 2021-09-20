@@ -6,3 +6,5 @@ scalar Time
 scalar PhoneNumber
 
 scalar SocialMediaLink
+
+scalar Email
