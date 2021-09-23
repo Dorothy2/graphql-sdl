@@ -1,5 +1,6 @@
 package com.drifai.graphqlsdl.resolver.post;
 
+import com.drifai.graphqlsdl.context.CustomGraphQLContext;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.kickstart.tools.GraphQLResolver;;
 import com.drifai.graphqlsdl.dto.PostDto;
@@ -27,6 +28,8 @@ public class PostQueryResolver implements GraphQLQueryResolver {
     }
 
     public List<PostDto> recentPosts(int count, int offset, DataFetchingEnvironment environment) {
+        CustomGraphQLContext context = (CustomGraphQLContext) environment.getContext();
+        log.info("User id: {}", context.getUserId());
         Set<String> fields = environment.getSelectionSet().getFields()
                         .stream()
                                 .map(SelectedField::getName)
