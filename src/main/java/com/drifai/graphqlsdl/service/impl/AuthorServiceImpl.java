@@ -8,9 +8,7 @@ import com.drifai.graphqlsdl.repository.AuthorRepository;
 import com.drifai.graphqlsdl.service.AuthorService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,5 +43,15 @@ public class AuthorServiceImpl implements AuthorService {
         Author author = authorMapper.convertDtoToAuthor(authorDto);
         Author createdAuthor = authorRepository.saveAndFlush(author);
         return createdAuthor.getId();
+    }
+
+    @Override
+    public Map<UUID, AuthorDto> getAllAuthorsByIds(Set<UUID> authorIds) {
+        List<Author> list = authorRepository.findAllById(authorIds);
+        return list.stream()
+                .map(authorMapper::convertAuthorToDto)
+                // toMap takes 2 lambda expressions, one for key, one for author object
+                //.collect(Collectors.toMap(author -> author.getId(), author -> author));
+                .collect(Collectors.toMap(AuthorDto::getId, author -> author));
     }
 }
